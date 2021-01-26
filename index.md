@@ -1,5 +1,7 @@
 # Ethnicity and Highschool Scores
 
-- [Score (Heatmap)](Datavis/hm.html)
-- [Score (Boxplot)](Datavis/bp.html)
+- [Distributions (Pie chart)](Datavis/PieChart.html)
+- [Distributions (Histogram)](Datavis/Histogram.html)
+- [Score (Heatmap)](Datavis/Heatmap.html)
+- [Score (ViolinPlot)](Datavis/ViolinPlot.html)
 
