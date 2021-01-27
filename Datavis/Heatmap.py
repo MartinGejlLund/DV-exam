@@ -1,11 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import plotly.express as px
-import numpy as np
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 
 dataframe = pd.read_csv('StudentsPerformance.csv')
 fig = make_subplots(
@@ -42,14 +37,46 @@ fig.add_trace(
         x=dataframe.columns[-5:],
         y=dataframe.columns[-8:-5],
         z=data,
-        colorscale='viridis'
+        colorscale='viridis',
+        name='Mean Score',
+        legendgroup='Mean Score',
+        visible=True
     ),
     row=2,
     col=1
 )
 fig.add_trace(
     go.Histogram(
-        x=dataframe['race/ethnicity']
+        x=dataframe['race/ethnicity'],
+        showlegend=False,
+        marker_color='blue',
+        name='Total count',
+        legendgroup='Total count',
+        visible=True
+    ),
+    row=1,
+    col=1
+)
+fig.add_trace(
+    go.Histogram(
+        x=dataframe['race/ethnicity'].loc[dataframe['gender'] == 'male'],
+        showlegend=False,
+        marker_color='blue',
+        name='Male count',
+        legendgroup='Male count',
+        visible=False
+    ),
+    row=1,
+    col=1
+)
+fig.add_trace(
+    go.Histogram(
+        x=dataframe['race/ethnicity'].loc[dataframe['gender'] == 'female'],
+        showlegend=False,
+        marker_color='red',
+        name='Female count',
+        legendgroup='Female count',
+        visible=False
     ),
     row=1,
     col=1
@@ -58,18 +85,74 @@ fig.add_trace(
     go.Bar(
         x=[dataframe['math score'].mean(), dataframe['reading score'].mean(), dataframe['writing score'].mean()],
         y=dataframe.columns[-8:-5],
-        orientation='h'
+        orientation='h',
+        showlegend=False,
+        marker_color='red',
+        name='Total mean score',
+        legendgroup='Mean score',
+        visible=True
     ),
     row=2,
     col=2
 )
-
-# app = dash.Dash(__name__)
-# app.layout = html.Div([
-#     dcc.Graph(figure=fig),
-# ])
-#
-# app.run_server(debug=True)
+fig.add_trace(
+    go.Bar(
+        x=[dataframe['math score'].loc[dataframe['gender'] == 'male'].mean(),
+           dataframe['reading score'].loc[dataframe['gender'] == 'male'].mean(),
+           dataframe['writing score'].loc[dataframe['gender'] == 'male'].mean()],
+        y=dataframe.columns[-8:-5],
+        orientation='h',
+        showlegend=False,
+        marker_color='blue',
+        name='Male mean score',
+        legendgroup='Male mean score',
+        visible=False
+    ),
+    row=2,
+    col=2
+)
+fig.add_trace(
+    go.Bar(
+        x=[dataframe['math score'].loc[dataframe['gender'] == 'female'].mean(),
+           dataframe['reading score'].loc[dataframe['gender'] == 'female'].mean(),
+           dataframe['writing score'].loc[dataframe['gender'] == 'female'].mean()],
+        y=dataframe.columns[-8:-5],
+        orientation='h',
+        showlegend=False,
+        marker_color='red',
+        name='Female mean score',
+        legendgroup='Female mean score',
+        visible=False
+    ),
+    row=2,
+    col=2
+)
+fig.update_layout(
+    updatemenus=[
+        dict(
+            buttons=list([
+                dict(
+                    args=[{'visible': [True, True, False, False, True, False, False]}],
+                    label='Total',
+                    method='update'
+                ),
+                dict(
+                    args=[{'visible': [True, False, True, True, False, True, True]}],
+                    label='By Gender',
+                    method='update'
+                )
+            ]),
+            type='buttons',
+            direction='right',
+            pad={'r': 10, 't': 10},
+            showactive=True,
+            x=0,
+            xanchor='left',
+            y=1.135,
+            yanchor='top'
+        ),
+    ]
+)
 
 # fig.show()
 fig.write_html('Heatmap.html')

@@ -1,11 +1,6 @@
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import plotly.express as px
-import numpy as np
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 
 dataframe = pd.read_csv('StudentsPerformance.csv')
 

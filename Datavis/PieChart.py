@@ -1,11 +1,7 @@
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import plotly.express as px
-import numpy as np
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 
 dataframe = pd.read_csv('StudentsPerformance.csv')
 
@@ -16,13 +12,13 @@ subjects = ['math score', 'reading score', 'writing score']
 gender = ['female', 'male', 'total']
 
 columns = {
-        'ethnicity': [np.nan] * 15,
-        'gender': [np.nan] * 15,
-        'count': [np.nan] * 15,
-        'math score': [np.nan] * 15,
-        'reading score': [np.nan] * 15,
-        'writing score': [np.nan] * 15,
-        'overall score': [np.nan] * 15,
+    'ethnicity': [np.nan] * 15,
+    'gender': [np.nan] * 15,
+    'count': [np.nan] * 15,
+    'math score': [np.nan] * 15,
+    'reading score': [np.nan] * 15,
+    'writing score': [np.nan] * 15,
+    'overall score': [np.nan] * 15,
 }
 
 df = pd.DataFrame(
@@ -35,7 +31,7 @@ for ii in range(len(ethnicity)):
     tmpDF1 = dataframe.copy()
     tmpDF1 = tmpDF1.loc[tmpDF1['race/ethnicity'] == ethnicity[ii]]
     for jj in range(len(gender)):
-        nn = jj+ii*(len(gender))
+        nn = jj + ii * (len(gender))
         df['ethnicity'][nn] = ethnicity[ii]
         df['gender'][nn] = gender[jj]
         if gender[jj] != 'total':
@@ -48,6 +44,7 @@ for ii in range(len(ethnicity)):
             df[kk][nn] = tmpDF2[kk].mean()
 
 df['overall score'] = dataframe[subjects].mean(axis=1)
+
 
 def createPie():
     df2 = df.copy()
@@ -116,6 +113,7 @@ def createPie():
         col=2
     )
     return fig
+
 
 # createPie().show()
 createPie().write_html('PieChart.html')

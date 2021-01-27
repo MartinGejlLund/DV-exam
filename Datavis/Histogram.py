@@ -1,11 +1,5 @@
 import pandas as pd
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import plotly.express as px
-import numpy as np
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
 
 dataframe = pd.read_csv('StudentsPerformance.csv')
 
@@ -13,6 +7,7 @@ dataframe['id'] = [i for i in range(len(dataframe['gender']))]
 
 ethnicity = ['group A', 'group B', 'group C', 'group D', 'group E']
 scores = ['math score', 'reading score', 'writing score']
+
 
 def setLayout(fig):
     fig.update_layout(
@@ -71,6 +66,7 @@ def setLayout(fig):
     fig.update_traces(opacity=0.75)
     return fig
 
+
 def scoreHistogram():
     df1 = dataframe.copy()
     df1['subject'] = ['mean' for i in df1.gender]
@@ -99,16 +95,18 @@ def scoreHistogram():
     fig = setLayout(fig)
     return fig
 
+
 def scoreHistogramTotal():
     df = dataframe.copy()
     df['mean score'] = df[['math score', 'reading score', 'writing score']].mean(axis=1)
     fig = px.histogram(
-            df,
-            x='mean score',
-            color='race/ethnicity'
+        df,
+        x='mean score',
+        color='race/ethnicity'
     )
     fig = setLayout(fig)
     return fig
+
 
 def combinePlots():
     data1 = scoreHistogramTotal()
@@ -119,12 +117,12 @@ def combinePlots():
             dict(
                 buttons=list([
                     dict(
-                        args=['type', data1],
+                        args=['visible', data1],
                         label='Count',
                         method='update'
                     ),
                     dict(
-                        args=['type', data2],
+                        args=['visible', data2],
                         label='Percentage',
                         method='update'
                     )
@@ -142,6 +140,7 @@ def combinePlots():
     )
 
     return fig
+
 
 # scoreHistogram().show()
 scoreHistogram().write_html('Histogram.html')
