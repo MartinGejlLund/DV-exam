@@ -115,6 +115,6 @@ def createPie():
     return fig
 
 
-# createPie().show()
+createPie().show()
 createPie().write_html('PieChart.html')
 createPie().write_image('PieChart.png', width=720, height=720, scale=3)

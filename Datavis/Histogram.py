@@ -162,7 +162,7 @@ def combinePlots():
     return fig
 
 
-# scoreHistogram().show()
+scoreHistogram().show()
 scoreHistogram().write_html('Histogram.html')
 scoreHistogram().write_image('Histogram.png', width=1200, height=720, scale=3)
 # scoreHistogramTotal().show()

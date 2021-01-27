@@ -46,7 +46,7 @@ for ii in scores:
             scalegroup='Male',
             name='Male',
             side='negative',
-            line_color='blue',
+            line_color='red',
             showlegend=showLegend,
             visible=False
         ),
@@ -63,7 +63,7 @@ for ii in scores:
             scalegroup='Female',
             name='Female',
             side='positive',
-            line_color='red',
+            line_color='blue',
             showlegend=showLegend,
             visible=False
         ),
@@ -104,6 +104,6 @@ fig.update_layout(
     ]
 )
 
-# fig.show()
+fig.show()
 fig.write_html('ViolinPlot.html')
 fig.write_image('ViolinPlot.png', width=1200, height=720, scale=3)

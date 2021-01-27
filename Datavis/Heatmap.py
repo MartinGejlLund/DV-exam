@@ -61,7 +61,7 @@ fig.add_trace(
     go.Histogram(
         x=dataframe['race/ethnicity'].loc[dataframe['gender'] == 'male'],
         showlegend=False,
-        marker_color='blue',
+        marker_color='red',
         name='Male count',
         legendgroup='Male count',
         visible=False
@@ -73,7 +73,7 @@ fig.add_trace(
     go.Histogram(
         x=dataframe['race/ethnicity'].loc[dataframe['gender'] == 'female'],
         showlegend=False,
-        marker_color='red',
+        marker_color='blue',
         name='Female count',
         legendgroup='Female count',
         visible=False
@@ -103,7 +103,7 @@ fig.add_trace(
         y=dataframe.columns[-8:-5],
         orientation='h',
         showlegend=False,
-        marker_color='blue',
+        marker_color='red',
         name='Male mean',
         legendgroup='Male mean',
         visible=False
@@ -119,7 +119,7 @@ fig.add_trace(
         y=dataframe.columns[-8:-5],
         orientation='h',
         showlegend=False,
-        marker_color='red',
+        marker_color='blue',
         name='Female mean',
         legendgroup='Female mean',
         visible=False
@@ -154,6 +154,6 @@ fig.update_layout(
     ]
 )
 
-# fig.show()
+fig.show()
 fig.write_html('Heatmap.html')
 fig.write_image('Heatmap.png', width=1200, height=720, scale=3)
