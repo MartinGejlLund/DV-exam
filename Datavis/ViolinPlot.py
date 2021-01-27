@@ -106,3 +106,4 @@ fig.update_layout(
 
 # fig.show()
 fig.write_html('ViolinPlot.html')
+fig.write_image('ViolinPlot.png', width=1200, height=720, scale=3)

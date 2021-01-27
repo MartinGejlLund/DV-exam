@@ -88,8 +88,8 @@ fig.add_trace(
         orientation='h',
         showlegend=False,
         marker_color='red',
-        name='Total mean score',
-        legendgroup='Mean score',
+        name='Total mean',
+        legendgroup='Total mean',
         visible=True
     ),
     row=2,
@@ -104,8 +104,8 @@ fig.add_trace(
         orientation='h',
         showlegend=False,
         marker_color='blue',
-        name='Male mean score',
-        legendgroup='Male mean score',
+        name='Male mean',
+        legendgroup='Male mean',
         visible=False
     ),
     row=2,
@@ -120,8 +120,8 @@ fig.add_trace(
         orientation='h',
         showlegend=False,
         marker_color='red',
-        name='Female mean score',
-        legendgroup='Female mean score',
+        name='Female mean',
+        legendgroup='Female mean',
         visible=False
     ),
     row=2,
@@ -156,3 +156,4 @@ fig.update_layout(
 
 # fig.show()
 fig.write_html('Heatmap.html')
+fig.write_image('Heatmap.png', width=1200, height=720, scale=3)
