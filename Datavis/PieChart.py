@@ -132,4 +132,4 @@ def createPie():
 
 createPie().show()
 createPie().write_html('PieChart.html')
-createPie().write_image('PieChart.png', width=720, height=720, scale=1)
+createPie().write_image('PieChart.png', width=1200, height=720, scale=1)

@@ -138,12 +138,12 @@ fig.update_layout(
             buttons=list([
                 dict(
                     args=[{'visible': [True, True, False, False, True, False, False]}],
-                    label='Total',
+                    label='Display total',
                     method='update'
                 ),
                 dict(
                     args=[{'visible': [True, False, True, True, False, True, True]}],
-                    label='By Gender',
+                    label='Display by Gender',
                     method='update'
                 )
             ]),
