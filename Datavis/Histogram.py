@@ -16,18 +16,18 @@ def setLayout(fig):
             dict(
                 buttons=list([
                     dict(
-                        args=['barmode', 'default'],
-                        label='Side by side',
+                        args=['barmode', 'stack'],
+                        label='Barmode: stacked',
                         method='relayout'
                     ),
                     dict(
                         args=['barmode', 'overlay'],
-                        label='Overlay',
+                        label='Barmode: sverlay',
                         method='relayout'
                     ),
                     dict(
-                        args=['barmode', 'stack'],
-                        label='Stacked',
+                        args=['barmode', 'default'],
+                        label='Barmode: side by side',
                         method='relayout'
                     )
                 ]),
@@ -35,21 +35,21 @@ def setLayout(fig):
                 direction='right',
                 pad={'r': 10, 't': 10},
                 showactive=True,
-                x=0,
-                xanchor='left',
-                y=1.065,
-                yanchor='top'
+                x=.7,
+                xanchor='right',
+                y=1.05,
+                yanchor='bottom'
             ),
             dict(
                 buttons=list([
                     dict(
-                        args=['histnorm', ''],
-                        label='Count',
+                        args=[{'histnorm': '', 'labels': {'percentage': 'count'}}],
+                        label='Switch y to count',
                         method='restyle'
                     ),
                     dict(
-                        args=['histnorm', 'percent'],
-                        label='Percentage',
+                        args=[{'histnorm': 'percent', 'labels': {'count': 'percentage'}}],
+                        label='Switch y to percentage',
                         method='restyle'
                     )
                 ]),
@@ -57,10 +57,10 @@ def setLayout(fig):
                 direction='right',
                 pad={'r': 10, 't': 10},
                 showactive=True,
-                x=0,
+                x=.7,
                 xanchor='left',
-                y=1.1,
-                yanchor='top'
+                y=1.05,
+                yanchor='bottom'
             ),
         ]
     )
@@ -92,7 +92,8 @@ def scoreHistogram():
         x='score',
         color='gender',
         facet_col='race/ethnicity',
-        facet_row='subject'
+        facet_row='subject',
+        title='Histogram of score distributions'
     )
     fig = setLayout(fig)
     return fig
@@ -164,7 +165,7 @@ def combinePlots():
 
 scoreHistogram().show()
 scoreHistogram().write_html('Histogram.html')
-scoreHistogram().write_image('Histogram.png', width=1200, height=720, scale=3)
+scoreHistogram().write_image('Histogram.png', width=1200, height=720, scale=1)
 # scoreHistogramTotal().show()
 # scoreHistogramTotal().write_html('HistogramTotal.html')
 # combinePlots().show()

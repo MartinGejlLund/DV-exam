@@ -61,13 +61,19 @@ def createPie():
         specs=[[{'type': 'domain'}, {'type': 'domain'}],
                [{'type': 'domain'}, {'type': 'domain'}],
                [{'type': 'domain'}, {'type': 'domain'}]],
-        subplot_titles=['Student count', 'Mean of score', 'Male student count', 'Male mean of score',
-                        'Female student count', 'Female mean of score']
+        subplot_titles=['Distribution of student count by ethnicity',
+                        'Distribution of student mean of scores by ethnicity',
+                        'Distribution of male student count by ethnicity',
+                        'Distribution of male mean of scores by ethnicity',
+                        'Distribution of female student count by ethnicity',
+                        'Distribution of female mean of scores by ethnicity']
     )
     fig.add_trace(
         go.Pie(
             labels=df['ethnicity'],
-            values=df['count']
+            values=df['count'],
+            name='Count',
+            sort=False
         ),
         row=1,
         col=1
@@ -75,7 +81,9 @@ def createPie():
     fig.add_trace(
         go.Pie(
             labels=df['ethnicity'],
-            values=df['overall score']
+            values=df['overall score'],
+            name='Mean of scores',
+            sort=False
         ),
         row=1,
         col=2
@@ -83,7 +91,9 @@ def createPie():
     fig.add_trace(
         go.Pie(
             labels=df2['ethnicity'],
-            values=df2['count']
+            values=df2['count'],
+            name='Count',
+            sort=False
         ),
         row=2,
         col=1
@@ -91,7 +101,9 @@ def createPie():
     fig.add_trace(
         go.Pie(
             labels=df2['ethnicity'],
-            values=df2['overall score']
+            values=df2['overall score'],
+            name='Mean of scores',
+            sort=False
         ),
         row=2,
         col=2
@@ -99,7 +111,9 @@ def createPie():
     fig.add_trace(
         go.Pie(
             labels=df3['ethnicity'],
-            values=df3['count']
+            values=df3['count'],
+            name='Count',
+            sort=False
         ),
         row=3,
         col=1
@@ -107,7 +121,9 @@ def createPie():
     fig.add_trace(
         go.Pie(
             labels=df3['ethnicity'],
-            values=df3['overall score']
+            values=df3['overall score'],
+            name='Mean of scores',
+            sort=False
         ),
         row=3,
         col=2
@@ -117,4 +133,4 @@ def createPie():
 
 createPie().show()
 createPie().write_html('PieChart.html')
-createPie().write_image('PieChart.png', width=720, height=720, scale=3)
+createPie().write_image('PieChart.png', width=720, height=720, scale=1)

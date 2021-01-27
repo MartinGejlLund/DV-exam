@@ -128,6 +128,11 @@ fig.add_trace(
     col=2
 )
 fig.update_layout(
+    title='Heatmap of subject scores by ethnicity',
+    yaxis_title_text='Count',
+    xaxis4=dict(
+        title='Score'
+    ),
     updatemenus=[
         dict(
             buttons=list([
@@ -146,14 +151,14 @@ fig.update_layout(
             direction='right',
             pad={'r': 10, 't': 10},
             showactive=True,
-            x=0,
+            x=.45,
             xanchor='left',
-            y=1.135,
-            yanchor='top'
+            y=1.05,
+            yanchor='bottom'
         ),
     ]
 )
 
 fig.show()
 fig.write_html('Heatmap.html')
-fig.write_image('Heatmap.png', width=1200, height=720, scale=3)
+fig.write_image('Heatmap.png', width=1200, height=720, scale=1)

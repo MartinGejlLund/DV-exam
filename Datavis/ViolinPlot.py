@@ -78,17 +78,20 @@ for ii in scores:
     nn += 1
 
 fig.update_layout(
+    title='Score distributions of the different ethnic groups',
+    yaxis2_matches='y1',
+    yaxis3_matches='y2',
     updatemenus=[
         dict(
             buttons=list([
                 dict(
                     args=[{'visible': [True, False, False]}],
-                    label='Total',
+                    label='Display total',
                     method='update'
                 ),
                 dict(
                     args=[{'visible': [False, True, True]}],
-                    label='By Gender',
+                    label='Display by Gender',
                     method='update'
                 )
             ]),
@@ -96,14 +99,14 @@ fig.update_layout(
             direction='right',
             pad={'r': 10, 't': 10},
             showactive=True,
-            x=0,
+            x=.45,
             xanchor='left',
-            y=1.135,
-            yanchor='top'
+            y=1.05,
+            yanchor='bottom'
         ),
     ]
 )
 
 fig.show()
 fig.write_html('ViolinPlot.html')
-fig.write_image('ViolinPlot.png', width=1200, height=720, scale=3)
+fig.write_image('ViolinPlot.png', width=1200, height=720, scale=1)
