@@ -43,8 +43,7 @@ for ii in range(len(ethnicity)):
         for kk in subjects:
             df[kk][nn] = tmpDF2[kk].mean()
 
-df['overall score'] = dataframe[subjects].mean(axis=1)
-
+df['overall score'] = df[subjects].mean(axis=1)
 
 def createPie():
     df2 = df.copy()
@@ -70,8 +69,8 @@ def createPie():
     )
     fig.add_trace(
         go.Pie(
-            labels=df['ethnicity'],
-            values=df['count'],
+            labels=df['ethnicity'].loc[df['gender'] == 'total'],
+            values=df['count'].loc[df['gender'] == 'total'],
             name='Count',
             sort=False
         ),
@@ -80,8 +79,8 @@ def createPie():
     )
     fig.add_trace(
         go.Pie(
-            labels=df['ethnicity'],
-            values=df['overall score'],
+            labels=df['ethnicity'].loc[df['gender'] == 'total'],
+            values=df['overall score'].loc[df['gender'] == 'total'],
             name='Mean of scores',
             sort=False
         ),
