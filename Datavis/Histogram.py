@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 dataframe = pd.read_csv('StudentsPerformance.csv')
 
@@ -85,6 +86,7 @@ def scoreHistogram():
     df4['score'] = dataframe['writing score']
 
     df = pd.concat([df1, df2, df3, df4], axis=0, ignore_index=True)
+
     fig = px.histogram(
         df,
         x='score',
@@ -97,12 +99,30 @@ def scoreHistogram():
 
 
 def scoreHistogramTotal():
-    df = dataframe.copy()
-    df['mean score'] = df[['math score', 'reading score', 'writing score']].mean(axis=1)
+    df1 = dataframe.copy()
+    df1['subject'] = ['mean' for i in df1.gender]
+    df1['score'] = dataframe[['math score', 'reading score', 'writing score']].mean(axis=1)
+
+    df2 = dataframe.copy()
+    df2['subject'] = ['math' for i in df2.gender]
+    df2['score'] = dataframe['math score']
+
+    df3 = dataframe.copy()
+    df3['subject'] = ['reading' for i in df3.gender]
+    df3['score'] = dataframe['reading score']
+
+    df4 = dataframe.copy()
+    df4['subject'] = ['writing' for i in df4.gender]
+    df4['score'] = dataframe['writing score']
+
+    df = pd.concat([df1, df2, df3, df4], axis=0, ignore_index=True)
+
     fig = px.histogram(
         df,
-        x='mean score',
-        color='race/ethnicity'
+        x='score',
+        color='blue',
+        facet_col='race/ethnicity',
+        facet_row='subject'
     )
     fig = setLayout(fig)
     return fig
@@ -111,7 +131,7 @@ def scoreHistogramTotal():
 def combinePlots():
     data1 = scoreHistogramTotal()
     data2 = scoreHistogram()
-    fig = px.histogram()
+    fig = go.Figure()
     fig.update_layout(
         updatemenus=[
             dict(
@@ -145,4 +165,5 @@ def combinePlots():
 # scoreHistogram().show()
 scoreHistogram().write_html('Histogram.html')
 # scoreHistogramTotal().show()
+# scoreHistogramTotal().write_html('HistogramTotal.html')
 # combinePlots().show()

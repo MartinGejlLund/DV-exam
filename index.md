@@ -1,6 +1,11 @@
 # Ethnicity and Highschool Scores
 
+The set is a table stores in a .csv file and consists of eight attributes.
+
 - [Dataset](StudentsPerformance.csv)
+
+The attributes, gender, race/ethnicity, parental level of education, lunch and test preparation course are all categorical attributes
+
 - [Distributions (Pie chart)](Datavis/PieChart.html)
 - [Distributions (Histogram)](Datavis/Histogram.html)
 - [Score (Heatmap)](Datavis/Heatmap.html)
