@@ -13,7 +13,7 @@
 - [Score (Heatmap)](Datavis/Heatmap.html)
 - [Score (ViolinPlot)](Datavis/ViolinPlot.html)
 
-- __Which gender/ethnicity has the best performance and which has the worst in the different subjects?__
+- __Which gender/ethnicity has the best performance, and which has the worst in the different subjects?__
 
 - [Distributions (Pie chart)](Datavis/PieChart.html)
 - [Distributions (Histogram)](Datavis/Histogram.html)
