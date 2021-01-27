@@ -22,6 +22,22 @@ for ii in scores:
         showLegend = False
     fig.add_trace(
         go.Violin(
+            x=dataframe['race/ethnicity'],
+            y=dataframe[ii],
+            box_visible=True,
+            meanline_visible=True,
+            legendgroup='Total',
+            scalegroup='Total',
+            name='Total',
+            line_color='Green',
+            showlegend=showLegend,
+            visible=True
+        ),
+        row=nn,
+        col=1
+    )
+    fig.add_trace(
+        go.Violin(
             x=dataframe['race/ethnicity'][dataframe['gender'] == 'male'],
             y=dataframe[ii][dataframe['gender'] == 'male'],
             box_visible=True,
@@ -31,7 +47,8 @@ for ii in scores:
             name='Male',
             side='negative',
             line_color='blue',
-            showlegend=showLegend
+            showlegend=showLegend,
+            visible=False
         ),
         row=nn,
         col=1
@@ -47,7 +64,8 @@ for ii in scores:
             name='Female',
             side='positive',
             line_color='red',
-            showlegend=showLegend
+            showlegend=showLegend,
+            visible=False
         ),
         row=nn,
         col=1
@@ -58,6 +76,33 @@ for ii in scores:
         col=1
     )
     nn += 1
+
+fig.update_layout(
+    updatemenus=[
+        dict(
+            buttons=list([
+                dict(
+                    args=[{'visible': [True, False, False]}],
+                    label='Total',
+                    method='update'
+                ),
+                dict(
+                    args=[{'visible': [False, True, True]}],
+                    label='By Gender',
+                    method='update'
+                )
+            ]),
+            type='buttons',
+            direction='right',
+            pad={'r': 10, 't': 10},
+            showactive=True,
+            x=0,
+            xanchor='left',
+            y=1.135,
+            yanchor='top'
+        ),
+    ]
+)
 
 # fig.show()
 fig.write_html('ViolinPlot.html')
